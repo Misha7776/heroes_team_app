@@ -10,7 +10,8 @@ class Account::UsersController < ApplicationController
   def impersonate
     user = resource
     impersonate_user(user)
-    redirect_to root_path
+    ActionCable.server.broadcast 'test_channel', m: "Blablabla"
+    # redirect_to root_path
   end
 
   def stop_impersonating
